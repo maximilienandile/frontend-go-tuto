@@ -1,7 +1,11 @@
 <template>
   <NavBar></NavBar>
   <div class="container">
-    <Carousel></Carousel>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <Carousel></Carousel>
+      </div>
+    </div>
   </div>
 </template>
 
