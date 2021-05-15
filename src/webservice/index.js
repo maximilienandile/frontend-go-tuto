@@ -24,9 +24,18 @@ function addToCart(productId, delta, idToken){
     })
 }
 
+function getCart(idToken){
+    return axios.get(process.env.VUE_APP_API_BASE_URL+"/me/cart",{
+        headers : {
+            'Authorization': `Bearer ${idToken}`
+        }
+    })
+}
+
 export default {
     getProducts:getProducts,
     getCategories:getCategories,
     getProductByID:getProductByID,
-    addToCart: addToCart
+    addToCart: addToCart,
+    getCart:getCart,
 }
