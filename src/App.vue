@@ -51,6 +51,7 @@
 import NavBar from "./components/NavBar";
 import Carousel from "./components/Carousel";
 import ProductThumbnail from "./components/ProductThumbnail";
+import Webservice from "@/webservice"
 
 export default {
   name: 'App',
@@ -58,6 +59,13 @@ export default {
     ProductThumbnail,
     Carousel,
     NavBar
+  },
+  created() {
+    Webservice.getProducts().then((res)=> {
+      alert(res.data)
+    }).catch((err)=>{
+      alert(err)
+    })
   }
 }
 </script>
