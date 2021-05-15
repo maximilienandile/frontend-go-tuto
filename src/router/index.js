@@ -3,6 +3,7 @@ import HomePage from "../views/HomePage";
 import ProductDetail from "../views/ProductDetail";
 import Login from "../views/Login";
 import Cart from "../views/Cart";
+import Success from "../views/Success";
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     path: '/cart',
     name: 'CartRoute',
     component: Cart,
+  },
+  {
+    path: '/success',
+    name: 'Success',
+    component: Success,
   },
 ]
 
