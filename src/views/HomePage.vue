@@ -48,7 +48,8 @@ export default {
       alert(err)
     })
     Webservice.getCategories().then((res)=> {
-      alert(res.data)
+      //alert(res.data)
+      console.log(res.data)
     }).catch((err)=>{
       alert(err)
     })

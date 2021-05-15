@@ -9,6 +9,7 @@
       <h1>{{product.name}}</h1>
       <p>{{product.totalPrice.display}}</p>
       <p>{{product.shortDescription}}</p>
+      <button @click="onAddToCart" type="button" class="btn btn-success">Add to Cart</button>
     </div>
 
   </div>
@@ -42,6 +43,16 @@ export default {
       alert(err)
       this.loading = false
     })
+  },
+  methods: {
+    onAddToCart(){
+      Webservice.addToCart(this.productId,1).then((res)=> {
+        alert("OK"+res)
+      }).catch((err)=> {
+        alert(err)
+      })
+
+    }
   }
 }
 </script>
