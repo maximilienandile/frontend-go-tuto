@@ -6,13 +6,13 @@ import router from './router'
 import firebase from "firebase/compat/app"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBEsFtKNy-h0GFl6oKCIMM5muFPKVKU-n8",
-    authDomain: "ecommerce-ec930.firebaseapp.com",
-    projectId: "ecommerce-ec930",
-    storageBucket: "ecommerce-ec930.appspot.com",
-    messagingSenderId: "1079215056515",
-    appId: "1:1079215056515:web:b2c16206ca6b6fb44d1db6",
-    measurementId: "G-CQK09JZH11"
+    apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+    authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.VUE_APP_FIREBASE_APP_ID,
+    measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID
 };
 firebase.initializeApp(firebaseConfig)
 
