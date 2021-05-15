@@ -16,10 +16,12 @@
           <a class="nav-link" href="#">Clothes</a>
           <a class="nav-link" href="#">Accessories</a>
           <a class="nav-link" href="#" ><UserIcon></UserIcon></a>
-          <a class="nav-link" href="#" >
-              <CartIcon></CartIcon>
-              <span class="">Cart 0</span>
-          </a>
+          <router-link :to="{name: 'CartRoute'}">
+            <a class="nav-link" href="#" >
+                <CartIcon></CartIcon>
+                <span class="" v-if="!this.loading && this.cart">Cart {{ this.cart.countItems }}</span>
+            </a>
+          </router-link>
         </div>
       </div>
     </div>
@@ -29,9 +31,33 @@
 <script>
 import UserIcon from "./icons/UserIcon";
 import CartIcon from "./icons/CartIcon";
+import AuthHelper from "../authHelper";
+import Webservice from "../webservice";
 export default {
   name: "NavBar",
-  components: {CartIcon, UserIcon}
+  components: {CartIcon, UserIcon},
+  data(){
+    return {
+      loading: false,
+      cart: null,
+    }
+  },
+  created() {
+    this.loading = true
+    AuthHelper.getCurrentUser().then((user)=> {
+      Webservice.getCart(user.idToken).then((res)=>{
+        this.cart = res.data
+        this.loading = false
+      }).catch((err)=>{
+        this.loading = false
+        console.error("impossible to load cart : "+err)
+      })
+    }).catch((err)=>{
+      this.loading = false
+      // What to do ?
+      console.log("user do not exists, no cart:"+err)
+    })
+  }
 }
 </script>
 

@@ -3,8 +3,17 @@
   <h1>Cart</h1>
   <Loader v-if="loading"></Loader>
   <div v-else>
-    <ul v-if="cart">
-      <li v-for="item in this.cart.items" :key="item.id">{{item}}</li>
+    <ul v-if="cart" class="list-group">
+      <li v-for="item in this.cart.items" :key="item.id" class="list-group-item">
+        {{item.title}} - {{item.shortDescription}} <br>
+        Quantity: {{item.quantity}} <br>
+        Total : {{item.totalPriceVATInc.display}}
+      </li>
+      <li>
+        Total ({{cart.countItems}}) : {{cart.totalPriceVATInc.display}} <br>
+        Shipping : 0 <br>
+        Grand Total: {{cart.totalPriceVATInc.display}} (VAT : {{cart.totalVAT.display}})
+      </li>
     </ul>
   </div>
 
