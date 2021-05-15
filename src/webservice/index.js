@@ -2,11 +2,11 @@ import axios from "axios";
 
 
 function getProducts(){
-    return axios.get("http://localhost:9090/products")
+    return axios.get(process.env.VUE_APP_API_BASE_URL+"/products")
 }
 
 function getCategories(){
-    return axios.get("http://localhost:9090/categories")
+    return axios.get(process.env.VUE_APP_API_BASE_URL+"/categories")
 }
 
 export default {
