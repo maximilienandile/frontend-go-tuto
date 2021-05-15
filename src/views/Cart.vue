@@ -30,6 +30,8 @@ import NavBar from "../components/NavBar";
 import AuthHelper from "../authHelper";
 import Webservice from "../webservice";
 import Loader from "../components/Loader";
+import {loadStripe} from "@stripe/stripe-js"
+
 export default {
   name: "Cart",
   components: {Loader, NavBar},
@@ -43,12 +45,29 @@ export default {
   },
   methods: {
     onClickCheckout(){
-      Webservice.checkout("","STRIPE","","EUR")
-      .then((res)=>{
-        console.log(res)
-      }).catch((err)=>{
-        console.log(err)
+      loadStripe(process.env.VUE_APP_STRIPE_PUBLISHABLE_KEY).then((stripeLoaded)=> {
+        console.log(stripeLoaded)
+        AuthHelper.getCurrentUser().then((user)=> {
+          // stripe is loaded
+          // we have the current user
+          Webservice.checkout(user.idToken,"STRIPE","","EUR")
+              .then((res)=>{
+                alert("checkout call OK !")
+                console.log(res)
+              }).catch((err)=>{
+                console.log(err)
+          })
+        }).catch((err)=>{
+          console.log("err no current user: "+ err)
+          this.$router.push({name:"LoginRoute"})
+        })
+
+      }).catch((err)=> {
+        console.log("impossible to load stripe :"+err)
       })
+
+
+
     }
   },
   created() {
