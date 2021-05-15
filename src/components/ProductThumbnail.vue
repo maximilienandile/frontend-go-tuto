@@ -1,6 +1,6 @@
 <template>
   <div class="card" style="width: 12rem; ">
-    <img src="@/assets/cat.jpeg" class="card-img-top" alt="...">
+    <img :src="imageUrl" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{ title }}</h5>
       <p class="card-text">{{ price }}</p>
@@ -15,7 +15,8 @@ export default {
   props: {
     title: String,
     price : String,
-    additionalInfo: String
+    additionalInfo: String,
+    imageUrl : String,
   }
 }
 </script>

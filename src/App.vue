@@ -6,6 +6,7 @@
         <Carousel></Carousel>
       </div>
     </div>
+    {{products}}
     <h3 class="mt-3">Popular products</h3>
     <div class="row">
       <div v-for="product in products" :key="product.id" class="col-12 col-md-3 d-flex justify-content-center mt-3">
@@ -13,6 +14,7 @@
             :price="product.totalPrice.display"
             :title="product.name"
             :additional-info="product.shortDescription"
+            :image-url="product.image"
         ></ProductThumbnail>
       </div>
     </div>
