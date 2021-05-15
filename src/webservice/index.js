@@ -1,8 +1,8 @@
 import axios from "axios";
 
 
-function getProducts(){
-    return axios.get(process.env.VUE_APP_API_BASE_URL+"/products")
+function getProducts(categoryId){
+    return axios.get(process.env.VUE_APP_API_BASE_URL+"/products?categoryId="+categoryId)
 }
 
 function getCategories(){

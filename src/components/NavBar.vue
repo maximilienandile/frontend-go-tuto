@@ -12,9 +12,7 @@
       <!-- Links -->
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="#">Plushes</a>
-          <a class="nav-link" href="#">Clothes</a>
-          <a class="nav-link" href="#">Accessories</a>
+            <router-link :to="{ name:'ProductByCategory', params : {categoryId: category.id}}" v-for="category in this.categories" :key="category.id" class="nav-link" href="#">{{ category.name }}</router-link>
           <a class="nav-link" href="#" ><UserIcon></UserIcon></a>
           <router-link :to="{name: 'CartRoute'}">
             <a class="nav-link" href="#" >
@@ -38,6 +36,7 @@ export default {
   components: {CartIcon, UserIcon},
   data(){
     return {
+      categories: null,
       loading: false,
       cart: null,
     }
@@ -56,6 +55,11 @@ export default {
       this.loading = false
       // What to do ?
       console.log("user do not exists, no cart:"+err)
+    })
+    Webservice.getCategories().then((res)=> {
+      this.categories = res.data
+    }).catch((err)=>{
+      console.error(err)
     })
   }
 }

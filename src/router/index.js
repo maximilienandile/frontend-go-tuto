@@ -4,6 +4,7 @@ import ProductDetail from "../views/ProductDetail";
 import Login from "../views/Login";
 import Cart from "../views/Cart";
 import Success from "../views/Success";
+import ProductsByCategory from "../views/ProductsByCategory";
 
 const routes = [
   {
@@ -16,6 +17,12 @@ const routes = [
     name: 'ProductDetailRoute',
     component: ProductDetail,
     props: route =>({ productId: route.params.productId})
+  },
+  {
+    path: '/products/category/:categoryId',
+    name: 'ProductByCategory',
+    component: ProductsByCategory,
+    props: route =>({ categoryId: route.params.categoryId})
   },
   {
     path: '/login',

@@ -2,12 +2,6 @@
   <NavBar></NavBar>
   <div class="container">
     <div class="row">
-      <div class="col-12 d-flex justify-content-center">
-        <Carousel></Carousel>
-      </div>
-    </div>
-    <h3 class="mt-3">Popular products</h3>
-    <div class="row">
       <div v-for="product in products" :key="product.id" class="col-12 col-md-3 d-flex justify-content-center mt-3">
         <router-link :to="{ name:'ProductDetailRoute', params : {productId: product.id}}">
           <ProductThumbnail
@@ -20,44 +14,39 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
-import NavBar from "./../components/NavBar";
-import Carousel from "./../components/Carousel";
-import ProductThumbnail from "./../components/ProductThumbnail";
-import Webservice from "./../webservice"
-
+import NavBar from "../components/NavBar";
+import ProductThumbnail from "../components/ProductThumbnail";
+import Webservice from "../webservice";
 export default {
-  name: 'App',
-  components: {
-    ProductThumbnail,
-    Carousel,
-    NavBar
+  name: "ProductsByCategory",
+  components: {NavBar,ProductThumbnail},
+  props: {
+    categoryId: String
   },
   data(){
     return {
       products: null,
+      loading: false,
     }
   },
   created() {
-    Webservice.getProducts("").then((res)=> {
+    this.loading = true
+    Webservice.getProducts(this.categoryId).then((res)=> {
       this.products = res.data
+      this.loading = false
     }).catch((err)=>{
-      alert(err)
+      this.loading = false
+      console.error(err)
     })
 
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+
 </style>
