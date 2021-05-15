@@ -8,39 +8,11 @@
     </div>
     <h3 class="mt-3">Popular products</h3>
     <div class="row">
-      <div class="col-12 col-md-3 d-flex justify-content-center mt-3">
+      <div v-for="product in products" :key="product.id" class="col-12 col-md-3 d-flex justify-content-center mt-3">
         <ProductThumbnail
-            price="10 EUR"
-            title="Product Name"
-            additional-info="New"
-        ></ProductThumbnail>
-      </div>
-      <div class="col-12 col-md-3 d-flex justify-content-center mt-3">
-        <ProductThumbnail
-            price="15 EUR"
-            title="Product Name 2"
-            additional-info="Sold Out"
-        ></ProductThumbnail>
-      </div>
-      <div class="col-12 col-md-3 d-flex justify-content-center mt-3">
-        <ProductThumbnail
-            price="15 EUR"
-            title="Product Name 2"
-            additionalInfo="Sold Out"
-        ></ProductThumbnail>
-      </div>
-      <div class="col-12 col-md-3 d-flex justify-content-center mt-3">
-        <ProductThumbnail
-            price="15 EUR"
-            title="Product Name 2"
-            additional-info="Sold Out"
-        ></ProductThumbnail>
-      </div>
-      <div class="col-12 col-md-3 d-flex justify-content-center mt-3">
-        <ProductThumbnail
-            price="15 EUR"
-            title="Product Name 2"
-            additional-info="Sold Out"
+            :price="product.totalPrice.display"
+            :title="product.name"
+            :additional-info="product.shortDescription"
         ></ProductThumbnail>
       </div>
     </div>
@@ -60,9 +32,14 @@ export default {
     Carousel,
     NavBar
   },
+  data(){
+    return {
+      products: null,
+    }
+  },
   created() {
     Webservice.getProducts().then((res)=> {
-      alert(res.data)
+      this.products = res.data
     }).catch((err)=>{
       alert(err)
     })
