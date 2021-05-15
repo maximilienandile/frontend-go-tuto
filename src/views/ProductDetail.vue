@@ -64,6 +64,7 @@ export default {
     onAddToCart(){
       AuthHelper.getCurrentUser().then((user)=> {
         Webservice.addToCart(this.productId,1, user.idToken).then((res)=> {
+          console.log(res)
           this.successMessage = "item added to the cart"
           this.showSuccessAlert = true
         }).catch((err)=> {

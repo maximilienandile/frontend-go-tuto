@@ -52,8 +52,9 @@ export default {
           // we have the current user
           Webservice.checkout(user.idToken,"STRIPE","","EUR")
               .then((res)=>{
-                alert("checkout call OK !")
                 console.log(res)
+                alert("checkout call OK !")
+                stripeLoaded.redirectToCheckout({sessionId: res.data.sessionId})
               }).catch((err)=>{
                 console.log(err)
           })
