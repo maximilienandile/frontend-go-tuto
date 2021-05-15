@@ -46,6 +46,7 @@ export default {
   },
   methods: {
     onAddToCart(){
+
       Webservice.addToCart(this.productId,1).then((res)=> {
         alert("OK"+res)
       }).catch((err)=> {

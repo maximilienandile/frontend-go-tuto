@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomePage from "../views/HomePage";
 import ProductDetail from "../views/ProductDetail";
+import Login from "../views/Login";
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
     name: 'ProductDetailRoute',
     component: ProductDetail,
     props: route =>({ productId: route.params.productId})
+  },
+  {
+    path: '/login',
+    name: 'LoginRoute',
+    component: Login,
   },
 ]
 
