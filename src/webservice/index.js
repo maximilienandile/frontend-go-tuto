@@ -32,10 +32,23 @@ function getCart(idToken){
     })
 }
 
+function checkout(idToken, provider, shippingCountryCode,currency){
+    return axios.post(process.env.VUE_APP_API_BASE_URL+"/checkout",{
+        provider : provider,
+        shippingCountryCode: shippingCountryCode,
+        currency: currency
+    },{
+        headers : {
+            'Authorization': `Bearer ${idToken}`
+        }
+    })
+}
+
 export default {
     getProducts:getProducts,
     getCategories:getCategories,
     getProductByID:getProductByID,
     addToCart: addToCart,
     getCart:getCart,
+    checkout:checkout,
 }

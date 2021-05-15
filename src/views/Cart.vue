@@ -15,6 +15,7 @@
         Grand Total: {{cart.totalPriceVATInc.display}} (VAT : {{cart.totalVAT.display}})
       </li>
     </ul>
+    <button type="button" class="btn btn-success" @click="onClickCheckout">Checkout</button>
   </div>
 
 
@@ -38,6 +39,16 @@ export default {
       showErrorAlert : false,
       loading: false,
       cart: null,
+    }
+  },
+  methods: {
+    onClickCheckout(){
+      Webservice.checkout("","STRIPE","","EUR")
+      .then((res)=>{
+        console.log(res)
+      }).catch((err)=>{
+        console.log(err)
+      })
     }
   },
   created() {
