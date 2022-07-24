@@ -4,7 +4,7 @@ Welcome to this project! This git repository is here to accompany students on th
 
 The code on this `main` branch is not complete. When you follow the course sessions, I often ask you to switch from one branch to another. You will be able to see the project grows but also to exercise!
 
-The course has many applications that allow you to build features by yourself, then see a complete live correction of the applications.
+The course has **many applications** that allow you to build features **by yourself**, then see a complete **live correction** of the applications.
 
 During this course, you will build two other projects :
 - A backend powered by Go: https://github.com/maximilienandile/backend-go-tuto
